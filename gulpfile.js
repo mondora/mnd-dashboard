@@ -1,5 +1,17 @@
 var gulp	= require("gulp");
 var plugins	= require("gulp-load-plugins")();
+var tinyLr	= require("tiny-lr");
+var static	= require("node-static");
+var http	= require("http");
+
+var lrServer = tinyLr();
+var dvServer =http.createServer(function (req, res) {
+	var stServer = new static.Server("./demo", {cache: false});
+	req.on("end", function () {
+		stServer.serve(req, res);
+	});
+	req.resume();
+});
 
 gulp.task("styles", function () {
 	gulp.src("styles/dashboard.scss")
@@ -9,7 +21,8 @@ gulp.task("styles", function () {
 		.pipe(gulp.dest("dist/"))
 		.pipe(plugins.minifyCss())
 		.pipe(plugins.rename("dashboard.min.css"))
-		.pipe(gulp.dest("dist/"));
+		.pipe(gulp.dest("dist/"))
+		.pipe(plugins.livereload(lrServer));
 });
 
 gulp.task("scripts", function () {
@@ -35,10 +48,13 @@ gulp.task("final", function () {
 		.pipe(gulp.dest("dist/"))
 		.pipe(plugins.uglify())
 		.pipe(plugins.rename("dashboard-tpls.min.js"))
-		.pipe(gulp.dest("dist/"));
+		.pipe(gulp.dest("dist/"))
+		.pipe(plugins.livereload(lrServer));
 });
 
 gulp.task("default", function () {
+	dvServer.listen(8080);
+	lrServer.listen(35729);
 	gulp.watch("styles/dashboard.scss", ["styles"]);
 	gulp.watch("src/**/*.js", ["scripts"]);
 	gulp.watch("templates/**/*.html", ["templates"]);

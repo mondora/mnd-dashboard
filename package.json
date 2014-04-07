@@ -13,6 +13,9 @@
     "gulp-load-plugins": "^0.4.0",
     "gulp-ngmin": "^0.1.2",
     "gulp-autoprefixer": "0.0.6",
-    "gulp-sass": "^0.7.1"
+    "gulp-sass": "^0.7.1",
+    "tiny-lr": "0.0.5",
+    "gulp-livereload": "^1.2.0",
+    "node-static": "^0.7.3"
   }
 }
