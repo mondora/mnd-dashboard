@@ -28,9 +28,9 @@ angular.module("mnd.dashboard", ["mnd.multi-transclude"])
 		scope: {},
 		link: function ($scope) {
 			$scope.toggle = function () {
-				var sidebar = document.getElementById("mnd-sidebar");
-				var toggle  = document.getElementById("mnd-toggle-sidebar");
-				var content = document.getElementById("mnd-content");
+				var sidebar = angular.element(document.getElementById("mnd-sidebar"));
+				var toggle  = angular.element(document.getElementById("mnd-toggle-sidebar"));
+				var content = angular.element(document.getElementById("mnd-content"));
 				if (sidebar.hasClass("show-sidebar")) {
 					sidebar.removeClass("show-sidebar");
 					toggle.removeClass("show-sidebar");
