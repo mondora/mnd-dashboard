@@ -1,4 +1,7 @@
-angular.module('mnd.dashboard', ['mnd.multi-transclude']).directive('mndSidebar', function () {
+angular.module('mnd.dashboard', [
+  'ui.bootstrap',
+  'mnd.multi-transclude'
+]).directive('mndSidebar', function () {
   return {
     restrict: 'EA',
     templateUrl: 'template/sidebar.html',

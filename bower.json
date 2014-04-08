@@ -25,6 +25,8 @@
   "dependencies": {
     "angular": "~1.2.16",
     "fontawesome": "~4.0.3",
-    "mnd.multi-transclude": "~0.1.2"
+    "mnd.multi-transclude": "~0.1.2",
+    "bootstrap": "~3.1.1",
+    "angular-bootstrap": "~0.10.0"
   }
 }

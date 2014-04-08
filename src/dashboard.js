@@ -1,4 +1,4 @@
-angular.module("mnd.dashboard", ["mnd.multi-transclude"])
+angular.module("mnd.dashboard", ["ui.bootstrap", "mnd.multi-transclude"])
 
 .directive("mndSidebar", function () {
 	return {
