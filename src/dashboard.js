@@ -2,7 +2,7 @@ angular.module("mnd.dashboard", ["mnd.multi-transclude"])
 
 .directive("mndSidebar", function () {
 	return {
-		restrict: "EC",
+		restrict: "EA",
 		templateUrl: "template/sidebar.html",
 		transclude: true,
 		scope: {
@@ -23,18 +23,21 @@ angular.module("mnd.dashboard", ["mnd.multi-transclude"])
 
 .directive("mndToggleSidebar", function () {
 	return {
-		restrict: "EC",
+		restrict: "EA",
 		templateUrl: "template/toggle-sidebar.html",
 		scope: {},
 		link: function ($scope) {
 			$scope.toggle = function () {
-				var sidebar = angular.element("#mnd-sidebar");
-				var content = angular.element("#mnd-content");
+				var sidebar = document.getElementById("mnd-sidebar");
+				var toggle  = document.getElementById("mnd-toggle-sidebar");
+				var content = document.getElementById("mnd-content");
 				if (sidebar.hasClass("show-sidebar")) {
 					sidebar.removeClass("show-sidebar");
+					toggle.removeClass("show-sidebar");
 					content.removeClass("show-sidebar");
 				} else {
 					sidebar.addClass("show-sidebar");
+					toggle.addClass("show-sidebar");
 					content.addClass("show-sidebar");
 				}
 			};
@@ -44,7 +47,7 @@ angular.module("mnd.dashboard", ["mnd.multi-transclude"])
 
 .directive("mndContent", function () {
 	return {
-		restrict: "EC",
+		restrict: "EA",
 		templateUrl: "template/content.html",
 		transclude: true
 	};
