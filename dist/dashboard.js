@@ -22,9 +22,10 @@ angular.module('mnd.dashboard', ['mnd.multi-transclude']).directive('mndSidebar'
     scope: {},
     link: function ($scope) {
       $scope.toggle = function () {
-        var sidebar = angular.element(document.getElementById('mnd-sidebar'));
-        var toggle = angular.element(document.getElementById('mnd-toggle-sidebar'));
-        var content = angular.element(document.getElementById('mnd-content'));
+        var gebi = document.getElementById;
+        var sidebar = angular.element(gebi('mnd-sidebar'));
+        var toggle = angular.element(gebi('mnd-toggle-sidebar'));
+        var content = angular.element(gebi('mnd-content'));
         if (sidebar.hasClass('show-sidebar')) {
           sidebar.removeClass('show-sidebar');
           toggle.removeClass('show-sidebar');
