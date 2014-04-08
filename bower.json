@@ -23,6 +23,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.16"
+    "angular": "~1.2.16",
+    "fontawesome": "~4.0.3",
+    "mnd.multi-transclude": "~0.1.2"
   }
 }

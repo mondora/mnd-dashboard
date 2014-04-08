@@ -22,10 +22,9 @@ angular.module('mnd.dashboard', ['mnd.multi-transclude']).directive('mndSidebar'
     scope: {},
     link: function ($scope) {
       $scope.toggle = function () {
-        var gebi = document.getElementById;
-        var sidebar = angular.element(gebi('mnd-sidebar'));
-        var toggle = angular.element(gebi('mnd-toggle-sidebar'));
-        var content = angular.element(gebi('mnd-content'));
+        var sidebar = angular.element(document.getElementById('mnd-sidebar'));
+        var toggle = angular.element(document.getElementById('mnd-toggle-sidebar'));
+        var content = angular.element(document.getElementById('mnd-content'));
         if (sidebar.hasClass('show-sidebar')) {
           sidebar.removeClass('show-sidebar');
           toggle.removeClass('show-sidebar');
@@ -83,8 +82,7 @@ module.run(['$templateCache', function($templateCache) {
     '			<ul ng-if="isSubmenu(item)" collapse="!item.open" class="nav nav-second-level">\n' +
     '				<li ng-repeat="subitem in item.items">\n' +
     '					<a ng-href="{{subitem.href}}">\n' +
-    '						<span class=mnds-width-20">\n' +
-    '						</span>\n' +
+    '						<span class="mnd-width-20"></span>\n' +
     '						<span class="mnd-width-20" ng-if="subitem.icon">\n' +
     '							<i class="fa {{subitem.icon}}"></i>\n' +
     '						</span>\n' +
@@ -109,10 +107,10 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toggle-sidebar.html',
     '<div id="mnd-toggle-sidebar">\n' +
-    '	<button id="mnd-toggle-sidebar" class="btn btn-sm btn-default" type="button" ng-click="toggle()">\n' +
+    '	<div id="mnd-show-sidebar" class="btn btn-sm btn-default" type="button" ng-click="toggle()">\n' +
     '		<i class="fa fa-bars"></i>\n' +
-    '	</button>\n' +
-    '</div>\n' +
-    '');
+    '	</div>\n' +
+    '	<div id="mnd-sidebar-logo"></div>\n' +
+    '</div>');
 }]);
 })();
