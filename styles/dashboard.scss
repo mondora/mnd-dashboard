@@ -50,10 +50,10 @@ $mnd-grey: #5e5f5f;
 	color: $mnd-grey;
 	text-align: center;
 }
-#mnd-sidebar.show-sidebar{
+#mnd-sidebar.sidebar-open{
 	left: 0px;
 }
-#mnd-toggle-sidebar.show-sidebar{
+#mnd-toggle-sidebar.sidebar-open{
 	left: 300px;
 }
 @media (max-width: 767px) {
@@ -61,7 +61,7 @@ $mnd-grey: #5e5f5f;
 		left: -300px;
 		transition: left 0.4s ease 0s;
 	}
-	#mnd-sidebar.show-sidebar {
+	#mnd-sidebar.sidebar-open {
 		left: 0px;
 	}
 	#mnd-toggle-sidebar {
@@ -84,7 +84,7 @@ $mnd-grey: #5e5f5f;
 	background-color: #ffffff;
 	transition: left 0.4s ease 0s;
 }
-#mnd-content.show-sidebar{
+#mnd-content.sidebar-open{
 	left: 400px;
 }
 @media (max-width: 767px) {
@@ -92,7 +92,7 @@ $mnd-grey: #5e5f5f;
 		padding-left: 0px;
 		transition: left 0.4s ease 0s;
 	}
-	#mnd-content.show-sidebar {
+	#mnd-content.sidebar-open {
 		left: 250px;
 	}
 }

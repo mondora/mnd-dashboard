@@ -1,6 +1,7 @@
-<div id="mnd-toggle-sidebar">
-	<div id="mnd-show-sidebar" class="btn btn-sm btn-default" type="button" ng-click="toggle()">
-		<i class="fa fa-bars"></i>
+<div id="mnd-toggle-sidebar" ng-class="{'sidebar-open': sidebarOpen}">
+	<div id="mnd-show-sidebar" ng-click="toggle()">
+		<i class="fa fa-bars" ng-show="!sidebarOpen"></i>
+		<i class="fa fa-times" ng-show="sidebarOpen"></i>
 	</div>
 	<div id="mnd-sidebar-logo"></div>
 </div>

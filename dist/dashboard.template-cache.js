@@ -6,7 +6,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('template/content.html',
-    '<div id="mnd-content" ng-transclude></div>\n' +
+    '<div id="mnd-content" ng-class="{\'sidebar-open\': sidebarOpen}" ng-transclude></div>\n' +
     '');
 }]);
 })();
@@ -19,7 +19,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('template/sidebar.html',
-    '<div id="mnd-sidebar">\n' +
+    '<div id="mnd-sidebar" ng-class="{\'sidebar-open\': sidebarOpen}">\n' +
     '	<div mnd-multi-transclude="before"></div>\n' +
     '	<ul class="nav">\n' +
     '		<li ng-repeat="item in menu.items" ng-click="toggleSubmenu(item)" class="mnd-clickable">\n' +
@@ -60,11 +60,13 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toggle-sidebar.html',
-    '<div id="mnd-toggle-sidebar">\n' +
-    '	<div id="mnd-show-sidebar" class="btn btn-sm btn-default" type="button" ng-click="toggle()">\n' +
-    '		<i class="fa fa-bars"></i>\n' +
+    '<div id="mnd-toggle-sidebar" ng-class="{\'sidebar-open\': sidebarOpen}">\n' +
+    '	<div id="mnd-show-sidebar" ng-click="toggle()">\n' +
+    '		<i class="fa fa-bars" ng-show="!sidebarOpen"></i>\n' +
+    '		<i class="fa fa-times" ng-show="sidebarOpen"></i>\n' +
     '	</div>\n' +
     '	<div id="mnd-sidebar-logo"></div>\n' +
-    '</div>');
+    '</div>\n' +
+    '');
 }]);
 })();

@@ -1,6 +1,18 @@
 angular.module("mnd.dashboard", ["ui.bootstrap", "mnd.multi-transclude"])
 
-.directive("mndSidebar", function () {
+.factory("MndSidebarService", function () {
+	var sidebarOpen = false;
+	return {
+		getSidebarStatus: function () {
+			return sidebarOpen;
+		},
+		toggleSidebarStatus: function () {
+			sidebarOpen = !sidebarOpen;
+		}
+	};
+})
+
+.directive("mndSidebar", function (MndSidebarService) {
 	return {
 		restrict: "EA",
 		templateUrl: "template/sidebar.html",
@@ -17,38 +29,43 @@ angular.module("mnd.dashboard", ["ui.bootstrap", "mnd.multi-transclude"])
 					item.open = !item.open;
 				}
 			};
+			$scope.sidebarOpen = MndSidebarService.getSidebarStatus();
+			$scope.$on("sidebarStatusChanged", function () {
+				$scope.sidebarOpen = MndSidebarService.getSidebarStatus();
+			});
 		}
 	};
 })
 
-.directive("mndToggleSidebar", function () {
+.directive("mndToggleSidebar", function (MndSidebarService) {
 	return {
 		restrict: "EA",
 		templateUrl: "template/toggle-sidebar.html",
 		scope: {},
 		link: function ($scope) {
+			$scope.sidebarOpen = MndSidebarService.getSidebarStatus();
 			$scope.toggle = function () {
-				var sidebar = angular.element(document.getElementById("mnd-sidebar"));
-				var toggle  = angular.element(document.getElementById("mnd-toggle-sidebar"));
-				var content = angular.element(document.getElementById("mnd-content"));
-				if (sidebar.hasClass("show-sidebar")) {
-					sidebar.removeClass("show-sidebar");
-					toggle.removeClass("show-sidebar");
-					content.removeClass("show-sidebar");
-				} else {
-					sidebar.addClass("show-sidebar");
-					toggle.addClass("show-sidebar");
-					content.addClass("show-sidebar");
-				}
+				MndSidebarService.toggleSidebarStatus();
+				$scope.$parent.$broadcast("sidebarStatusChanged");
 			};
+			$scope.$on("sidebarStatusChanged", function () {
+				$scope.sidebarOpen = MndSidebarService.getSidebarStatus();
+			});
 		}
 	};
 })
 
-.directive("mndContent", function () {
+.directive("mndContent", function (MndSidebarService) {
 	return {
 		restrict: "EA",
 		templateUrl: "template/content.html",
-		transclude: true
+		scope: {},
+		transclude: true,
+		link: function ($scope) {
+			$scope.sidebarOpen = MndSidebarService.getSidebarStatus();
+			$scope.$on("sidebarStatusChanged", function () {
+				$scope.sidebarOpen = MndSidebarService.getSidebarStatus();
+			});
+		}
 	};
 });
