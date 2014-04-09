@@ -4,46 +4,42 @@ angular.module("dashboardDemo", ["mnd.dashboard"])
 	$scope.menu = {
 		items: [
 			{
-				title: "Social networks",
-				icon: "fa-users",
-				type: "submenu",
-				items: [
-					{
-						title: "Google Plus",
-						href: "https://plus.google.com",
-						icon: "fa-google-plus"
-					},
-					{
-						title: "Facebook",
-						href: "https://facebook.com",
-						icon: "fa-facebook"
-					},
-					{
-						title: "Twitter",
-						href: "https://twitter.com",
-						icon: "fa-twitter"
-					}
-				]
+				title: "home",
+				href: "http://www.mondora.com"
 			},
 			{
-				title: "Time wasting sites",
-				icon: "fa-clock-o",
+				title: "cloud",
+				href: "http://www.mondora.com"
+			},
+			{
+				title: "governance",
+				href: "http://www.mondora.com"
+			},
+			{
+				title: "team",
+				href: "http://www.mondora.com"
+			},
+			{
+				title: "formazione",
+				href: "http://www.mondora.com"
+			},
+			{
+				title: "community",
+				href: "http://www.mondora.com"
+			},
+			{
+				title: "my mondora",
 				type: "submenu",
 				items: [
 					{
-						title: "Reddit",
+						title: "pomodoro",
 						href: "http://reddit.com"
 					},
 					{
-						title: "xkcd",
+						title: "AaS",
 						href: "http://xkcd.com"
 					}
 				]
-			},
-			{
-				title: "Website",
-				href: "http://mondora.com",
-				icon: "fa-globe"
 			}
 		]
 	};

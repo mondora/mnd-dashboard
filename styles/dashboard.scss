@@ -1,5 +1,11 @@
 $mnd-yellow: #ffcc00;
 $mnd-grey: #5e5f5f;
+$mnd-font: 'Source Sans Pro', sans-serif;
+
+/************************ HTML ***************************/
+body {
+	font-family: $mnd-font;	
+}
 
 /************************ Sidebar *************************/
 #mnd-sidebar {
@@ -14,12 +20,6 @@ $mnd-grey: #5e5f5f;
 	z-index: 1;
 	border-right: 3px solid $mnd-grey;
 	transition: left 0.4s ease 0s;
-}
-#mnd-sidebar > ul > li:first-child {
-	border-top: 1px solid #dddddd;
-}
-#mnd-sidebar > ul > li {
-	border-bottom: 1px solid #dddddd;
 }
 #mnd-sidebar * {
 	color: #333333;
@@ -36,7 +36,6 @@ $mnd-grey: #5e5f5f;
 	text-align: center;
 	background-color: $mnd-yellow;
 	border-right: 3px solid $mnd-grey;
-	border-bottom: 3px solid $mnd-grey;
 	transition: left 0.4s ease 0s;
 }
 #mnd-show-sidebar {
@@ -69,8 +68,32 @@ $mnd-grey: #5e5f5f;
 		min-width: 100%;
 		left: 0px;
 		text-align: left;
+		border-bottom: 3px solid $mnd-grey;
+	}
+	#mnd-show-sidebar {
+		margin: 10px 20px;
 	}
 }
+
+
+/************************ sidebar MENU ***************************/
+.nav {
+  margin-top: 50px;
+  font: {
+  	family: $mnd-font;
+  	size: 30px;
+  	weight: normal;
+  }
+  text-transform: uppercase;
+}
+
+#mnd-sidebar > ul > li:first-child { 
+}
+
+#mnd-sidebar > ul > li {
+}
+
+
 /************************ Content *************************/
 #mnd-content {
 	box-sizing: border-box;
@@ -100,6 +123,9 @@ $mnd-grey: #5e5f5f;
 .mnd-clickable {
 	cursor: pointer;
 }
+.mnd-clickable:hover {
+	background-color:$mnd-yellow;
+}	
 .mnd-vsp-4 {
 	width: 100%;
 	height: 4px;
