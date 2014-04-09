@@ -1,4 +1,4 @@
-<div id="mnd-sidebar">
+<div id="mnd-sidebar" ng-class="{'sidebar-open': sidebarOpen}">
 	<div mnd-multi-transclude="before"></div>
 	<ul class="nav">
 		<li ng-repeat="item in menu.items" ng-click="toggleSubmenu(item)" class="mnd-clickable">

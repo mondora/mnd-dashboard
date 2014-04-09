@@ -1,52 +1,76 @@
 angular.module('mnd.dashboard', [
   'ui.bootstrap',
   'mnd.multi-transclude'
-]).directive('mndSidebar', function () {
+]).factory('MndSidebarService', function () {
+  var sidebarOpen = false;
   return {
-    restrict: 'EA',
-    templateUrl: 'template/sidebar.html',
-    transclude: true,
-    scope: { menu: '=' },
-    link: function ($scope) {
-      $scope.isSubmenu = function (item) {
-        return item.type === 'submenu';
-      };
-      $scope.toggleSubmenu = function (item) {
-        if (item.type === 'submenu') {
-          item.open = !item.open;
-        }
-      };
+    getSidebarStatus: function () {
+      return sidebarOpen;
+    },
+    toggleSidebarStatus: function () {
+      sidebarOpen = !sidebarOpen;
     }
   };
-}).directive('mndToggleSidebar', function () {
-  return {
-    restrict: 'EA',
-    templateUrl: 'template/toggle-sidebar.html',
-    scope: {},
-    link: function ($scope) {
-      $scope.toggle = function () {
-        var sidebar = angular.element(document.getElementById('mnd-sidebar'));
-        var toggle = angular.element(document.getElementById('mnd-toggle-sidebar'));
-        var content = angular.element(document.getElementById('mnd-content'));
-        if (sidebar.hasClass('show-sidebar')) {
-          sidebar.removeClass('show-sidebar');
-          toggle.removeClass('show-sidebar');
-          content.removeClass('show-sidebar');
-        } else {
-          sidebar.addClass('show-sidebar');
-          toggle.addClass('show-sidebar');
-          content.addClass('show-sidebar');
-        }
-      };
-    }
-  };
-}).directive('mndContent', function () {
-  return {
-    restrict: 'EA',
-    templateUrl: 'template/content.html',
-    transclude: true
-  };
-});
+}).directive('mndSidebar', [
+  'MndSidebarService',
+  function (MndSidebarService) {
+    return {
+      restrict: 'EA',
+      templateUrl: 'template/sidebar.html',
+      transclude: true,
+      scope: { menu: '=' },
+      link: function ($scope) {
+        $scope.isSubmenu = function (item) {
+          return item.type === 'submenu';
+        };
+        $scope.toggleSubmenu = function (item) {
+          if (item.type === 'submenu') {
+            item.open = !item.open;
+          }
+        };
+        $scope.sidebarOpen = MndSidebarService.getSidebarStatus();
+        $scope.$on('sidebarStatusChanged', function () {
+          $scope.sidebarOpen = MndSidebarService.getSidebarStatus();
+        });
+      }
+    };
+  }
+]).directive('mndToggleSidebar', [
+  'MndSidebarService',
+  function (MndSidebarService) {
+    return {
+      restrict: 'EA',
+      templateUrl: 'template/toggle-sidebar.html',
+      scope: {},
+      link: function ($scope) {
+        $scope.sidebarOpen = MndSidebarService.getSidebarStatus();
+        $scope.toggle = function () {
+          MndSidebarService.toggleSidebarStatus();
+          $scope.$parent.$broadcast('sidebarStatusChanged');
+        };
+        $scope.$on('sidebarStatusChanged', function () {
+          $scope.sidebarOpen = MndSidebarService.getSidebarStatus();
+        });
+      }
+    };
+  }
+]).directive('mndContent', [
+  'MndSidebarService',
+  function (MndSidebarService) {
+    return {
+      restrict: 'EA',
+      templateUrl: 'template/content.html',
+      scope: {},
+      transclude: true,
+      link: function ($scope) {
+        $scope.sidebarOpen = MndSidebarService.getSidebarStatus();
+        $scope.$on('sidebarStatusChanged', function () {
+          $scope.sidebarOpen = MndSidebarService.getSidebarStatus();
+        });
+      }
+    };
+  }
+]);
 (function(module) {
 try {
   module = angular.module('mnd.dashboard');
@@ -55,7 +79,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('template/content.html',
-    '<div id="mnd-content" ng-transclude></div>\n' +
+    '<div id="mnd-content" ng-class="{\'sidebar-open\': sidebarOpen}" ng-transclude></div>\n' +
     '');
 }]);
 })();
@@ -68,7 +92,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('template/sidebar.html',
-    '<div id="mnd-sidebar">\n' +
+    '<div id="mnd-sidebar" ng-class="{\'sidebar-open\': sidebarOpen}">\n' +
     '	<div mnd-multi-transclude="before"></div>\n' +
     '	<ul class="nav">\n' +
     '		<li ng-repeat="item in menu.items" ng-click="toggleSubmenu(item)" class="mnd-clickable">\n' +
@@ -109,11 +133,13 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toggle-sidebar.html',
-    '<div id="mnd-toggle-sidebar">\n' +
-    '	<div id="mnd-show-sidebar" class="btn btn-sm btn-default" type="button" ng-click="toggle()">\n' +
-    '		<i class="fa fa-bars"></i>\n' +
+    '<div id="mnd-toggle-sidebar" ng-class="{\'sidebar-open\': sidebarOpen}">\n' +
+    '	<div id="mnd-show-sidebar" ng-click="toggle()">\n' +
+    '		<i class="fa fa-bars" ng-show="!sidebarOpen"></i>\n' +
+    '		<i class="fa fa-times" ng-show="sidebarOpen"></i>\n' +
     '	</div>\n' +
     '	<div id="mnd-sidebar-logo"></div>\n' +
-    '</div>');
+    '</div>\n' +
+    '');
 }]);
 })();
