@@ -1,7 +1,7 @@
 {
   "author": "Paolo Scanferla",
   "name": "mnd.dashboard",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.5.5",
