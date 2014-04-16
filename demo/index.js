@@ -33,11 +33,11 @@ angular.module("dashboardDemo", ["mnd.dashboard"])
 				items: [
 					{
 						title: "pomodoro",
-						href: "http://reddit.com"
+						href: "http://www.mondora.com"
 					},
 					{
 						title: "AaS",
-						href: "http://xkcd.com"
+						href: "http://www.mondora.com"
 					}
 				]
 			}
