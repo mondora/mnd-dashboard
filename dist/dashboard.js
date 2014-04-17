@@ -17,6 +17,7 @@ angular.module('mnd.dashboard', [
     return {
       restrict: 'EA',
       templateUrl: 'template/sidebar.html',
+      replace: true,
       transclude: true,
       scope: { menu: '=' },
       link: function ($scope) {
@@ -41,6 +42,7 @@ angular.module('mnd.dashboard', [
     return {
       restrict: 'EA',
       templateUrl: 'template/toggle-sidebar.html',
+      replace: true,
       scope: {},
       link: function ($scope) {
         $scope.sidebarOpen = MndSidebarService.getSidebarStatus();
@@ -60,8 +62,9 @@ angular.module('mnd.dashboard', [
     return {
       restrict: 'EA',
       templateUrl: 'template/content.html',
-      scope: {},
+      replace: true,
       transclude: true,
+      scope: {},
       link: function ($scope) {
         $scope.sidebarOpen = MndSidebarService.getSidebarStatus();
         $scope.$on('sidebarStatusChanged', function () {
