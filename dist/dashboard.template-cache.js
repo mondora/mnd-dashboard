@@ -46,17 +46,7 @@ module.run(['$templateCache', function($templateCache) {
     '			</ul>\n' +
     '		</li>\n' +
     '	</ul>\n' +
-    '	<div mnd-multi-transclude="after">\n' +
-    '		<div id="mnd-sidebar-footer">\n' +
-    '			<span>\n' +
-    '				MONDORA Srl \n' +
-    '			</span>\n' +
-    '			<br />\n' +
-    '			Milano, Morbegno, Novara, St. Moritz (CH)<br />\n' +
-    '			Via Cornalia 7 <br />\n' +
-    '			20154, Milano <br />\n' +
-    '		</div>\n' +
-    '	</div>\n' +
+    '	<div mnd-multi-transclude="after"></div>\n' +
     '</div>\n' +
     '');
 }]);
@@ -75,11 +65,7 @@ module.run(['$templateCache', function($templateCache) {
     '		<i class="fa fa-bars" ng-show="!sidebarOpen"></i>\n' +
     '		<i class="fa fa-times" ng-show="sidebarOpen"></i>\n' +
     '	</div>\n' +
-    '	<div id="mnd-sidebar-logo">\n' +
-    '		<div class="mnd-mondora-logo">\n' +
-    '			<img src="http://mnd-website.s3.amazonaws.com/img/mondora-logo.png" />\n' +
-    '		</div>\n' +
-    '	</div>\n' +
+    '	<div mnd-multi-transclude="center"></div>\n' +
     '</div>\n' +
     '');
 }]);

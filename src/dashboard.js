@@ -43,6 +43,7 @@ angular.module("mnd.dashboard", ["ui.bootstrap", "mnd.multi-transclude"])
 		restrict: "EA",
 		templateUrl: "template/toggle-sidebar.html",
 		replace: true,
+		transclude: true,
 		scope: {},
 		link: function ($scope) {
 			$scope.sidebarOpen = MndSidebarService.getSidebarStatus();

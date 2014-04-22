@@ -16,8 +16,28 @@
 		<script src="index.js"></script>
 	</head>
 	<body ng-controller="MainController">
-		<div mnd-sidebar menu="menu"></div>
-		<div mnd-toggle-sidebar></div>
+		<div mnd-sidebar menu="menu">
+			<div name="after">
+				<div id="mnd-sidebar-footer">
+					<span>
+						MONDORA Srl 
+					</span>
+					<br />
+					Milano, Morbegno, Novara, St. Moritz (CH)<br />
+					Via Cornalia 7 <br />
+					20154, Milano <br />
+				</div>	
+			</div>
+		</div>
+		<div mnd-toggle-sidebar>
+			<div name="center">
+				<div id="mnd-sidebar-logo">
+					<div class="mnd-mondora-logo">
+						<img src="http://mnd-website.s3.amazonaws.com/img/mondora-logo.png" />
+					</div>
+				</div>
+			</div>
+		</div>
 		<div mnd-content class="mnd-content">
 			Begin
 		</div>
