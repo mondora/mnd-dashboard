@@ -16,7 +16,8 @@
 		<script src="index.js"></script>
 	</head>
 	<body ng-controller="MainController">
-		<div mnd-sidebar menu="menu">
+		<div mnd-sidebar ng-controller="SidebarController">
+			<div name="before">AAA</div>
 			<div name="after">
 				<div id="mnd-sidebar-footer">
 					<span>
@@ -38,8 +39,11 @@
 				</div>
 			</div>
 		</div>
-		<div mnd-content class="mnd-content">
-			Begin
+		<div mnd-content class="mnd-content" ng-controller="ContentController1">
+			<div ng-controller="ContentController2">
+				Begin
+				{{m}}
+			</div>
 		</div>
 	</body>
 </html>

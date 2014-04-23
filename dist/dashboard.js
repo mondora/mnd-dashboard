@@ -19,8 +19,15 @@ angular.module('mnd.dashboard', [
       templateUrl: 'template/sidebar.html',
       replace: true,
       transclude: true,
-      scope: { menu: '=' },
+      scope: true,
       link: function ($scope) {
+        $scope.call = function (name) {
+          if (!name) {
+            return;
+          }
+          var args = Array.prototype.slice.call(arguments, 1);
+          $scope[name].call(null, args);
+        };
         $scope.isSubmenu = function (item) {
           return item.type === 'submenu';
         };
@@ -44,7 +51,7 @@ angular.module('mnd.dashboard', [
       templateUrl: 'template/toggle-sidebar.html',
       replace: true,
       transclude: true,
-      scope: {},
+      scope: true,
       link: function ($scope) {
         $scope.sidebarOpen = MndSidebarService.getSidebarStatus();
         $scope.toggle = function () {
@@ -65,7 +72,7 @@ angular.module('mnd.dashboard', [
       templateUrl: 'template/content.html',
       replace: true,
       transclude: true,
-      scope: {},
+      scope: true,
       link: function ($scope) {
         $scope.sidebarOpen = MndSidebarService.getSidebarStatus();
         $scope.$on('sidebarStatusChanged', function () {

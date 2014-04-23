@@ -19,8 +19,15 @@ angular.module('mnd.dashboard', [
       templateUrl: 'template/sidebar.html',
       replace: true,
       transclude: true,
-      scope: { menu: '=' },
+      scope: true,
       link: function ($scope) {
+        $scope.call = function (name) {
+          if (!name) {
+            return;
+          }
+          var args = Array.prototype.slice.call(arguments, 1);
+          $scope[name].call(null, args);
+        };
         $scope.isSubmenu = function (item) {
           return item.type === 'submenu';
         };
@@ -44,7 +51,7 @@ angular.module('mnd.dashboard', [
       templateUrl: 'template/toggle-sidebar.html',
       replace: true,
       transclude: true,
-      scope: {},
+      scope: true,
       link: function ($scope) {
         $scope.sidebarOpen = MndSidebarService.getSidebarStatus();
         $scope.toggle = function () {
@@ -65,7 +72,7 @@ angular.module('mnd.dashboard', [
       templateUrl: 'template/content.html',
       replace: true,
       transclude: true,
-      scope: {},
+      scope: true,
       link: function ($scope) {
         $scope.sidebarOpen = MndSidebarService.getSidebarStatus();
         $scope.$on('sidebarStatusChanged', function () {
@@ -100,7 +107,7 @@ module.run(['$templateCache', function($templateCache) {
     '	<div mnd-multi-transclude="before"></div>\n' +
     '	<ul class="nav">\n' +
     '		<li ng-repeat="item in menu.items" ng-click="toggleSubmenu(item)" class="mnd-clickable">\n' +
-    '			<a ng-href="{{item.href}}">\n' +
+    '			<a ng-href="{{item.href}}" ng-click="call(item.ngClick)">\n' +
     '				<span class="mnd-width-20" ng-if="item.icon">\n' +
     '					<i class="fa {{item.icon}}"></i>\n' +
     '				</span>\n' +

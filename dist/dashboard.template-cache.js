@@ -23,7 +23,7 @@ module.run(['$templateCache', function($templateCache) {
     '	<div mnd-multi-transclude="before"></div>\n' +
     '	<ul class="nav">\n' +
     '		<li ng-repeat="item in menu.items" ng-click="toggleSubmenu(item)" class="mnd-clickable">\n' +
-    '			<a ng-href="{{item.href}}">\n' +
+    '			<a ng-href="{{item.href}}" ng-click="call(item.ngClick)">\n' +
     '				<span class="mnd-width-20" ng-if="item.icon">\n' +
     '					<i class="fa {{item.icon}}"></i>\n' +
     '				</span>\n' +

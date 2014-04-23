@@ -2,7 +2,7 @@
 	<div mnd-multi-transclude="before"></div>
 	<ul class="nav">
 		<li ng-repeat="item in menu.items" ng-click="toggleSubmenu(item)" class="mnd-clickable">
-			<a ng-href="{{item.href}}">
+			<a ng-href="{{item.href}}" ng-click="call(item.ngClick)">
 				<span class="mnd-width-20" ng-if="item.icon">
 					<i class="fa {{item.icon}}"></i>
 				</span>
