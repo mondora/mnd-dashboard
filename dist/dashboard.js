@@ -26,7 +26,7 @@ angular.module('mnd.dashboard', [
             return;
           }
           var args = Array.prototype.slice.call(arguments, 1);
-          $scope[name].call(null, args);
+          $scope.actions[name].apply(null, args);
         };
         $scope.isSubmenu = function (item) {
           return item.type === 'submenu';

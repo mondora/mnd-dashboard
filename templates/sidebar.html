@@ -2,19 +2,19 @@
 	<div mnd-multi-transclude="before"></div>
 	<ul class="nav">
 		<li ng-repeat="item in menu.items" ng-click="toggleSubmenu(item)" class="mnd-clickable">
-			<a ng-href="{{item.href}}" ng-click="call(item.ngClick)">
+			<a ng-href="{{item.link}}" ng-click="call(item.action)">
 				<span class="mnd-width-20" ng-if="item.icon">
 					<i class="fa {{item.icon}}"></i>
 				</span>
 				{{item.title}}
 				<span ng-if="isSubmenu(item)" class="pull-right">
-					<i ng-if="!item.open"class="fa fa-angle-left"></i>
-					<i ng-if="item.open"class="fa fa-angle-down"></i>
+					<i ng-if="!item.open" class="fa fa-angle-left"></i>
+					<i ng-if="item.open" class="fa fa-angle-down"></i>
 				</span>
 			</a>
 			<ul ng-if="isSubmenu(item)" collapse="!item.open" class="nav nav-second-level">
 				<li ng-repeat="subitem in item.items">
-					<a ng-href="{{subitem.href}}">
+					<a ng-href="{{subitem.link}}" ng-click="call(subitem.action)">
 						<span class="mnd-width-20"></span>
 						<span class="mnd-width-20" ng-if="subitem.icon">
 							<i class="fa {{subitem.icon}}"></i>
