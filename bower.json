@@ -1,6 +1,6 @@
 {
   "name": "mnd-dashboard",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "homepage": "https://github.com/mondora/mnd-dashboard",
   "authors": [
     "Paolo Scanferla <paolo.scanferla@mondora.com>"
@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "angular": "~1.2.16",
-    "fontawesome": "~4.0.3",
+    "fontawesome": "~4.1.0",
     "mnd.multi-transclude": "~0.1.2",
     "bootstrap": "~3.1.1",
     "angular-bootstrap": "~0.10.0"
